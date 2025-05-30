@@ -17,9 +17,6 @@ export const useCreateURL = () => {
 
     const url = endpoint + limit + params;
 
-    console.log('publicKey', publicKey)
-    console.log('privateKey', privateKey)
-    console.log('url', url)
     return url;
 };
   
