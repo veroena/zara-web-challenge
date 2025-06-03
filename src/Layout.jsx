@@ -3,14 +3,14 @@ import Search from "./components/Search";
 import Header from "./components/Header";
 import "./Layout.scss";
 
-const Layout = ({data, isError, isPending, getSearchTerm, refetch, numberOfResults, searchTerm, resetSearch}) => {
+const Layout = ({data, isError, isPending, getSearchTerm, refetch, numberOfResults, searchTerm, resetSearch, getFavorite, favorites}) => {
   
   return (
     <>
-      <Header />
+      <Header favorites={favorites} />
       <div className="layout">
         <Search searchTerm={searchTerm} getSearchTerm={getSearchTerm} resetSearch={resetSearch} refetch={refetch} numberOfResults={numberOfResults} />
-        <List data={ data } isError={ isError } isPending={ isPending } />
+        <List data={ data } isError={ isError } isPending={ isPending } getFavorite={getFavorite} favorites={favorites} />
       </div> 
     </>
   )

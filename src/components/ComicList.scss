@@ -21,14 +21,15 @@
       width: 100%;
       overflow-x: scroll;
       overflow-y: clip;
-      &::-webkit-scrollbar-thumb {
-        background-color: #EC1D24;
-      }
+      
+        &::-webkit-scrollbar-thumb {
+          background-color: #EC1D24;
+        }
 
-      &::-webkit-scrollbar {
-        height: 4px;
-        background: #D9D9D9;
-      }
+        &::-webkit-scrollbar {
+          height: 4px;
+          background: #D9D9D9;
+        }
 
       .comics__list {
         display: flex;

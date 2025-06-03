@@ -38,10 +38,17 @@
       font-size: 14px;
     }
 
-    .card__favorites--icon {
-      width: 12px;
-      height: 11px;
+    .card__favorites--button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+
+      .card__favorites--icon {
+        width: 12px;
+        height: 12px;
+      }
     }
+
   }
 
   &:hover .card__text-container {
@@ -51,5 +58,9 @@
       border-top: 13px solid #EC1D24;
       transition-delay: 0.3s;
     }
+  }
+
+  &:hover .fill {
+    filter: invert(100%) sepia(5%) saturate(0%) hue-rotate(342deg) brightness(105%) contrast(157%);
   }
 }

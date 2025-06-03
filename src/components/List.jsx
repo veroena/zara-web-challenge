@@ -1,24 +1,23 @@
 import CharacterCard from "./CharacterCard";
-import { UseGetList } from "../hooks/useGetList";
 import { Link } from "react-router";
 import "./List.scss";
 
-const List = ({data, isError, isPending}) => {
+const List = ({data, isError, isPending, getFavorite, favorites}) => {
 
   return (
     <div>
       {isError && <div>Oops! Something went wrong</div>}
       {isPending && <div>Loading...</div>}
       {!isPending && (
-         <ol className="list">
+        <ul className="list">
           { data.map((item) => 
             <li key={ item.id } className="list__item">
               <Link to={`/${item.name}`}>
-                <CharacterCard character={item} />
+                <CharacterCard character={item} getFavorite={getFavorite} favorites={favorites} />
               </Link>
             </li>
           )}
-        </ol>
+        </ul>
       )}
     </div>
   );
