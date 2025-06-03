@@ -1,0 +1,41 @@
+.detail {
+  .detail__img {
+    height: 398px;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .detail__container {
+    background-color: #000000;
+    color: #FFFFFF;
+    padding: 24px 16px 48px;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      border-right: 24px solid white;
+      border-top: 24px solid #000000;
+      }
+
+    .detail__container--header {
+      display: flex;
+      justify-content: space-between;
+
+      .detail__title {
+        font-size: 32px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+      }
+
+      .detail__favorites--icon {
+        width: 24px;
+        height: 22px;
+      }
+    }
+  }
+}

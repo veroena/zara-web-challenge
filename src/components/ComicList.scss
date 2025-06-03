@@ -1,0 +1,37 @@
+  .comics {
+    padding: 48px 16px;
+
+    .comics__header {
+      font-size: 24px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .comics__list--container {
+      width: 100%;
+      overflow-x: scroll;
+
+      .comics__list {
+        display: flex;
+        gap: 16px;
+        padding-top: 24px;
+  
+        .comics__image {
+          width: 168px;
+          height: 253px;
+        }
+  
+        .comics__title {
+          font-size: 15px;
+          font-weight: 500;
+          margin: 11px 0 7px;
+        }
+  
+        .comics__year {
+          font-size: 11px;
+          font-weight: 400;
+        }
+      }
+    }
+    
+  }

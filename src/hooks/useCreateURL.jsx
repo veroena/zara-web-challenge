@@ -1,22 +1,29 @@
 import md5 from "md5";
 
-const publicKey = 'fed39f81ba3c865cc68774567de288d7';
-const privateKey = '8c8a356ef5a584b7016ff6c3cf1f86fafce5f1aa';
+const publicKey = import.meta.env.VITE_PUBLIC_KEY;
+const privateKey = import.meta.env.VITE_PRIVATE_KEY;
 const apiBaseURL = "https://gateway.marvel.com/v1/public";
 const initialNumberOfCharacters = 50
 
-export const useCreateURL = () => {
-    const limit = `limit=${initialNumberOfCharacters}&`;
-    const ts = Date.now();
-    const params = new URLSearchParams({
-      ts: ts,
-      apikey: publicKey,
-      hash: md5(ts + privateKey + publicKey),
-    });
-    const endpoint = `${apiBaseURL}/characters?`;
+export const useCreateURL = (characterName) => {
 
-    const url = endpoint + limit + params;
+  const limit = `limit=${initialNumberOfCharacters}&`;
+  const ts = Date.now();
+  const params = new URLSearchParams({
+    ts: ts,
+    apikey: publicKey,
+    hash: md5(ts + privateKey + publicKey),
+  });
+  const endpoint = `${apiBaseURL}/characters?`;
+  const characterNameString = `&nameStartsWith=${characterName}`;
 
+
+  if (characterName) {
+    const url = endpoint + limit + params + characterNameString;
     return url;
+  } else {
+    const url = endpoint + limit + params;
+    return url;
+  }
 };
   

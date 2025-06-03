@@ -1,12 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { useCreateURL } from "./useCreateURL";
 
-export const UseGetList = () => {
+export const UseGetCharacterSearch = (characterName) => {
   
-  const url = useCreateURL();
+  const url = useCreateURL(characterName);
   
   return useQuery({
-    queryKey: ["posts"],
+    enabled: false,
+    queryKey: ["posts", {characterName}],
     queryFn: async () => {
       const response = await fetch(url);
       return (await response.json());
