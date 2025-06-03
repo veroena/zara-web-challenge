@@ -13,15 +13,19 @@ const CharacterDetail = ({ data }) => {
     <>
       <Header />
       <div className="detail">
-        <div className="detail__img--container">
-          <img src={ character.thumbnail.path + '.' + character.thumbnail.extension } alt={ character.name } className="detail__img" />
-        </div>
-        <div className="detail__container">
-          <div className="detail__container--header">
-            <h2 className="detail__title">{ character.name }</h2>
-            <img src={ HeartIconEmpty } alt="Favorites Icon" className="detail__favorites--icon" />
+        <div className="detail__header--container">
+          <div className="detail__header">
+            <div className="detail__img--container">
+              <img src={ character.thumbnail.path + '.' + character.thumbnail.extension } alt={ character.name } className="detail__img" />
+            </div>
+            <div className="detail__container">
+              <div className="detail__container--header">
+                <h2 className="detail__title">{ character.name }</h2>
+                <img src={ HeartIconEmpty } alt="Favorites Icon" className="detail__favorites--icon" />
+              </div>
+              <p>{ character.description}</p>
+            </div>
           </div>
-          <p>{ character.description}</p>
         </div>
         <ComicList characterId={character.id} />
       </div>

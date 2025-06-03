@@ -14,19 +14,24 @@ const comicList = ({characterId}) => {
 
   return (
     <div className="comics">
-      <h3 className="comics__header">COMICS</h3>
-      <div className="comics__list--container">
-        <ul className="comics__list">
-          { orderedData?.map(comic =>
-            <li className="comics__list--item" key={ comic.id }>
-              { comic.images.slice(0, 1).map((image, id) =>
-                <img key={id} src={image.path + '.' + image.extension} alt={comic.title} className="comics__image" />
-              ) }
-              <p className="comics__title">{ comic.title }</p>
-              <p className="comics__year">{getDate(comic.dates)}</p>
-            </li>
-          )}
-        </ul>
+      <div className="comics__container">
+        <h3 className="comics__header">COMICS</h3>
+        <div className="comics__list--container">
+          <ul className="comics__list">
+            { orderedData?.map(comic =>
+              <li className="comics__list--item" key={ comic.id }>
+                { comic.images.length === 0 ?
+                  <div className="comics__image--not-found">Cover not found</div>
+                  :
+                  comic.images.slice(0, 1).map((image, id) =>
+                  <img key={id} src={image.path + '.' + image.extension} alt={comic.title} className="comics__image" />
+                ) }
+                <p className="comics__title">{ comic.title }</p>
+                <p className="comics__year">{getDate(comic.dates)}</p>
+              </li>
+            )}
+          </ul>
+        </div>
       </div>
     </div>
   )
