@@ -1,25 +1,25 @@
 .search {
-  width: 100%;
-  text-transform: uppercase;
-  padding: 12px 0;
+	width: 100%;
+	text-transform: uppercase;
+	padding: 12px 0;
 
-  .search__bar {
-    width: 100%;
-    height: 27px;
-    margin: 12px 0;
-    box-sizing: border-box;
-    border: none;
-    border-bottom: 1px solid #000000;
-    background: url('../assets/search-icon.png') no-repeat left;
-    padding-left: 24px;
-    &::placeholder {
-      text-transform: uppercase;
-      font-size: 16px;;
-      color: #AAAAAA;
-    }
-  }
+	.search__bar {
+		width: 100%;
+		height: 27px;
+		margin: 12px 0;
+		box-sizing: border-box;
+		border: none;
+		border-bottom: 1px solid #000000;
+		background: url('../assets/search-icon.png') no-repeat left;
+		padding-left: 24px;
+		&::placeholder {
+			text-transform: uppercase;
+			font-size: 16px;
+			color: #aaaaaa;
+		}
+	}
 
-  .search__results {
-    font-size: 12px;
-  }
+	.search__results {
+		font-size: 12px;
+	}
 }

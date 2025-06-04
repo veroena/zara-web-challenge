@@ -1,69 +1,69 @@
-  .comics {
-    padding: 48px 16px;
-    @media (min-width: 1024px) {
-      display: flex;
-      justify-content: center;
-    }
+.comics {
+	padding: 48px 16px;
+	@media (min-width: 1024px) {
+		display: flex;
+		justify-content: center;
+	}
 
-    .comics__container {
-      @media (min-width: 1024px) {
-        width: 960px;
-      }
-    }
+	.comics__container {
+		@media (min-width: 1024px) {
+			width: 960px;
+		}
+	}
 
-    .comics__header {
-      font-size: 24px;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
+	.comics__header {
+		font-size: 24px;
+		font-weight: 700;
+		text-transform: uppercase;
+	}
 
-    .comics__list--container {
-      width: 100%;
-      overflow-x: scroll;
-      overflow-y: clip;
-      
-        &::-webkit-scrollbar-thumb {
-          background-color: #EC1D24;
-        }
+	.comics__list--container {
+		width: 100%;
+		overflow-x: scroll;
+		overflow-y: clip;
 
-        &::-webkit-scrollbar {
-          height: 4px;
-          background: #D9D9D9;
-        }
+		&::-webkit-scrollbar-thumb {
+			background-color: #ec1d24;
+		}
 
-      .comics__list {
-        display: flex;
-        gap: 16px;
-        padding: 24px 0;
-  
-        .comics__image {
-          width: 168px;
-          height: 253px;
-        }
+		&::-webkit-scrollbar {
+			height: 4px;
+			background: #d9d9d9;
+		}
 
-        .comics__image--not-found {
-          width: 168px;
-          height: 253px;
-          border: solid 1px #000000;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          box-sizing: border-box;
-          padding: 16px;
-          text-transform: uppercase;
-        }
-  
-        .comics__title {
-          font-size: 15px;
-          font-weight: 500;
-          margin: 11px 0 7px;
-          width: 168px;
-        }
-  
-        .comics__year {
-          font-size: 11px;
-          font-weight: 400;
-        }
-      }
-    }
-  }
+		.comics__list {
+			display: flex;
+			gap: 16px;
+			padding: 24px 0;
+
+			.comics__image {
+				width: 168px;
+				height: 253px;
+			}
+
+			.comics__image--not-found {
+				width: 168px;
+				height: 253px;
+				border: solid 1px #000000;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				box-sizing: border-box;
+				padding: 16px;
+				text-transform: uppercase;
+			}
+
+			.comics__title {
+				font-size: 15px;
+				font-weight: 500;
+				margin: 11px 0 7px;
+				width: 168px;
+			}
+
+			.comics__year {
+				font-size: 11px;
+				font-weight: 400;
+			}
+		}
+	}
+}
