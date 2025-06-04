@@ -3,14 +3,14 @@ import Home from './pages/Home';
 import CharacterDetail from './pages/CharacterDetail';
 import Favorites from './pages/Favorites';
 import { createBrowserRouter, RouterProvider } from 'react-router';
-import { UseGetList } from "./hooks/useGetList";
+import { UseGetCharacterList } from "./hooks/useGetCharacterList";
 import { UseGetCharacterSearch } from "./hooks/useGetCharacterSearch";
 import { useState } from 'react';
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [favorites, setFavorites] = useState('');
-  const { data, isError, isPending } = UseGetList();
+  const { data, isError, isPending } = UseGetCharacterList();
   const { data: searchData, refetch } = UseGetCharacterSearch(searchTerm);
 
   const getSearchTerm = (value) => {
@@ -76,7 +76,7 @@ const App = () => {
   ])
   
   return (
-    <div>
+    <div className="app">
       <RouterProvider router={router} />
     </div>
   )

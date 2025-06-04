@@ -17,9 +17,18 @@ const Search = ({ numberOfResults, refetch, getSearchTerm, searchTerm, resetSear
 
   return (
     <>
-      <form className="search" onSubmit={handleSubmit}>
-        <input type="text" name="search characters" className="search__bar" placeholder="Search a character..." onChange={handleChange} value={searchTerm} onClick={() => handleReset()} />
-        <p className="search__results">{numberOfResults} results
+      <form className="search" onSubmit={handleSubmit} data-testid="search__form">
+        <input
+          type="text"
+          name="search characters"
+          className="search__bar"
+          placeholder="Search a character..."
+          onChange={ handleChange }
+          value={ searchTerm }
+          onClick={ () => handleReset() }
+          data-testid="search__bar"
+        />
+        <p className="search__results" data-testid="search__results">{numberOfResults} results
         </p>
       </form>
     </>

@@ -8,15 +8,17 @@ import "../styles/CharacterDetail.scss";
 const CharacterDetail = ({ data, favorites, getFavorite }) => {
   const params = useParams();
 
+  
   const character = data.find(character => character.name === params.characterName);
   // const characterFromFavorites = favorites.length > 0 && favorites.find(character => character.name === params.characterName);
 
+  
   const getHeart = (list, char) => {
     const find = list.some(item => item.id === char.id);
     if (find) {
-      return <img src={ HeartIconFill } alt="Favorites Icon" className="detail__favorites--icon fill" />
+      return <img src={ HeartIconFill } alt="Favorites Icon" className="detail__favorites--icon fill" data-testid="favorites__icon--fill" />
     } else {
-      return <img src={ HeartIconEmpty } alt="Favorites Icon" className="detail__favorites--icon" />
+      return <img src={ HeartIconEmpty } alt="Favorites Icon" className="detail__favorites--icon" data-testid="favorites__icon--empty" />
     }
   }
 
@@ -36,20 +38,25 @@ const CharacterDetail = ({ data, favorites, getFavorite }) => {
         <div className="detail__header--container">
           <div className="detail__header">
             <div className="detail__img--container">
-              <img src={ character.thumbnail.path + '.' + character.thumbnail.extension } alt={ character.name } className="detail__img" />
+              <img
+                src={ character.thumbnail.path + '.' + character.thumbnail.extension }
+                alt={ character.name }
+                className="detail__img"
+                data-testid="detail__img"
+              />
             </div>
             <div className="detail__container">
               <div className="detail__container--header">
-                <h2 className="detail__title">{ character.name }</h2>
+                <h2 className="detail__title" data-testid="detail__title">{ character.name }</h2>
                 <button className="detail__favorites--button" onClick={ (e) => getFavorite(e, character) }>
                   { favorites.length > 0 ?
                     getHeart(favorites, character)
                     :
-                    <img src={ HeartIconEmpty } alt="Favorites Icon" className="detail__favorites--icon" />
+                    <img src={ HeartIconEmpty } alt="Favorites Icon" className="detail__favorites--icon" data-testid="favorites__icon--empty" />
                   }
                   </button>
               </div>
-              <p>{ character.description}</p>
+              <p className="detail__description" data-testid="detail__description">{ character.description}</p>
             </div>
           </div>
         </div>

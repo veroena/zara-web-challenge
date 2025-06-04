@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useCreateURL } from "./useCreateURL";
 
-export const UseGetList = () => {
+export const UseGetCharacterList = () => {
   
   const url = useCreateURL();
   
