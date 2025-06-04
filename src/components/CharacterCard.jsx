@@ -1,10 +1,12 @@
 import HeartIconEmpty from '../assets/heart-icon-empty.png';
 import HeartIconFill from '../assets/heart-icon-fill.svg';
 import { useFavoriteStore } from '../store';
+import { useHandleFavorite } from '../hooks/useHandleFavorite';
 import '../styles/CharacterCard.scss';
 
-const CharacterCard = ({ character, getFavorite }) => {
+const CharacterCard = ({ character }) => {
 	const { favorites } = useFavoriteStore(state => state);
+	const { handleFavorite } = useHandleFavorite();
 
 	const getHeart = (list, char) => {
 		const find = list.some(item => item.id === char.id);
@@ -44,7 +46,7 @@ const CharacterCard = ({ character, getFavorite }) => {
 				<button
 					className="card__favorites--button"
 					data-testid="card__favorites--button"
-					onClick={e => getFavorite(e, character, favorites)}
+					onClick={e => handleFavorite(e, character)}
 				>
 					{favorites.length > 0 ? (
 						getHeart(favorites, character)

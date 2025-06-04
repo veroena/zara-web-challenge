@@ -2,13 +2,7 @@ import CharacterCard from './CharacterCard';
 import { Link } from 'react-router';
 import '../styles/List.scss';
 
-const CharacterList = ({
-	data,
-	isError,
-	isPending,
-	getFavorite,
-	favorites,
-}) => {
+const CharacterList = ({ data, isError, isPending }) => {
 	return (
 		<div>
 			{isError && (
@@ -24,11 +18,7 @@ const CharacterList = ({
 							data-testid="character__list--item"
 						>
 							<Link to={`/${item.name}`} data-testid="character__link">
-								<CharacterCard
-									character={item}
-									getFavorite={getFavorite}
-									favorites={favorites}
-								/>
+								<CharacterCard character={item} />
 							</Link>
 						</li>
 					))}

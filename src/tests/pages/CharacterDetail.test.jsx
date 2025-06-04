@@ -4,6 +4,7 @@ import { MemoryRouter, Routes, Route } from 'react-router';
 import CharacterDetail from '../../pages/CharacterDetail';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useFavoriteStore } from '../../store';
+import * as useHandleFavoriteHook from '../../hooks/useHandleFavorite';
 
 const data = [
 	{
@@ -38,8 +39,6 @@ const favoritesWithStorm = [
 	},
 ];
 
-const getFavorite = vi.fn();
-
 const queryClient = new QueryClient();
 
 const wrappedCharacterDetail = character => {
@@ -49,7 +48,7 @@ const wrappedCharacterDetail = character => {
 				<Routes>
 					<Route
 						path="/:characterName"
-						element={<CharacterDetail data={data} getFavorite={getFavorite} />}
+						element={<CharacterDetail data={data} />}
 					></Route>
 				</Routes>
 			</MemoryRouter>
@@ -110,12 +109,15 @@ describe('CharacterDetail', () => {
 	});
 
 	it('an action is triggered on favorites button click', () => {
+		const useHandleFavoriteSpy = vi.spyOn(useHandleFavoriteHook, 'useHandleFavorite');
+		useHandleFavoriteSpy.mockReturnValue({ handleFavorite: vi.fn() });
+
 		useFavoriteStore.setState({ favorites: [] });
 		render(wrappedCharacterDetail('storm'));
 
 		const favoritesButton = screen.getByTestId('favorites__icon--empty');
 		fireEvent.click(favoritesButton);
 
-		expect(getFavorite).toHaveBeenCalled();
+		expect(useHandleFavoriteSpy).toHaveBeenCalled();
 	});
 });

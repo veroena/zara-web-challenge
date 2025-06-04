@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import CharacterList from '../../components/CharacterList';
 import { MemoryRouter, Routes, Route } from 'react-router';
 
@@ -21,8 +21,6 @@ const data = [
 ];
 const isError = true;
 const isPending = true;
-const getFavorite = vi.fn();
-const favorites = [];
 
 describe('CharacterList', () => {
 	it('renders the CharacterList component', () => {
@@ -31,8 +29,6 @@ describe('CharacterList', () => {
 				data={data}
 				isError={isError}
 				isPending={isPending}
-				getFavorite={getFavorite}
-				favorites={favorites}
 			/>
 		);
 	});
@@ -43,8 +39,6 @@ describe('CharacterList', () => {
 				data={data}
 				isError={isError}
 				isPending={!isPending}
-				getFavorite={getFavorite}
-				favorites={favorites}
 			/>
 		);
 
@@ -60,8 +54,6 @@ describe('CharacterList', () => {
 				data={data}
 				isError={isError}
 				isPending={!isPending}
-				getFavorite={getFavorite}
-				favorites={favorites}
 			/>
 		);
 
@@ -74,8 +66,6 @@ describe('CharacterList', () => {
 				data={data}
 				isError={!isError}
 				isPending={isPending}
-				getFavorite={getFavorite}
-				favorites={favorites}
 			/>
 		);
 
@@ -91,8 +81,6 @@ describe('CharacterList', () => {
 				data={data}
 				isError={!isError}
 				isPending={isPending}
-				getFavorite={getFavorite}
-				favorites={favorites}
 			/>
 		);
 
@@ -106,8 +94,8 @@ describe('CharacterList', () => {
 					data={data}
 					isError={!isError}
 					isPending={!isPending}
-					getFavorite={getFavorite}
-					favorites={favorites}
+
+
 				/>
 			</MemoryRouter>
 		);
@@ -124,8 +112,8 @@ describe('CharacterList', () => {
 					data={data}
 					isError={!isError}
 					isPending={!isPending}
-					getFavorite={getFavorite}
-					favorites={favorites}
+
+
 				/>
 			</MemoryRouter>
 		);
@@ -152,8 +140,8 @@ describe('CharacterList', () => {
 								data={data}
 								isError={!isError}
 								isPending={!isPending}
-								getFavorite={getFavorite}
-								favorites={favorites}
+			
+			
 							/>
 						}
 					/>

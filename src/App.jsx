@@ -10,25 +10,9 @@ import { useFavoriteStore } from './store';
 
 const App = () => {
 	const { searchTerm } = useSearchStore(state => state);
-	const { favorites, setFavorites } = useFavoriteStore(state => state);
+	const { favorites } = useFavoriteStore(state => state);
 	const { data, isError, isPending } = UseGetCharacterList();
 	const { data: searchData } = UseGetCharacterSearch(searchTerm);
-
-	const getFavorite = (e, value, favoritesArray) => {
-		e.preventDefault();
-		e.stopPropagation();
-		if (favoritesArray.length > 0) {
-			const index = favoritesArray?.findIndex(item => item?.id === value?.id);
-			if (index !== -1) {
-				const filteredFaves = favoritesArray?.filter((_, i) => i !== index);
-				setFavorites(filteredFaves);
-			} else {
-				setFavorites([...favoritesArray, value]);
-			}
-		} else {
-			setFavorites([...favoritesArray, value]);
-		}
-	};
 
 	const router = createBrowserRouter([
 		{
@@ -47,7 +31,6 @@ const App = () => {
 							? data?.data.results.length
 							: searchData?.data.results.length
 					}
-					getFavorite={getFavorite}
 				/>
 			),
 			errorElement: <div>Oops! Something went bad...</div>,
@@ -61,18 +44,12 @@ const App = () => {
 							? data?.data.results
 							: searchData?.data.results
 					}
-					getFavorite={getFavorite}
 				/>
 			),
 		},
 		{
 			path: '/favorites',
-			element: (
-				<Favorites
-					numberOfResults={favorites.length}
-					getFavorite={getFavorite}
-				/>
-			),
+			element: <Favorites numberOfResults={favorites.length} />,
 		},
 	]);
 

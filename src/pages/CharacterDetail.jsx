@@ -4,11 +4,13 @@ import HeartIconFill from '../assets/heart-icon-fill.svg';
 import Header from '../components/Header';
 import ComicList from '../components/ComicList';
 import { useFavoriteStore } from '../store';
+import { useHandleFavorite } from '../hooks/useHandleFavorite';
 import '../styles/CharacterDetail.scss';
 
-const CharacterDetail = ({ data, getFavorite }) => {
+const CharacterDetail = ({ data }) => {
 	const params = useParams();
 	const { favorites } = useFavoriteStore(state => state);
+	const { handleFavorite } = useHandleFavorite();
 
 	const character = data.find(
 		character => character.name === params.characterName
@@ -39,7 +41,7 @@ const CharacterDetail = ({ data, getFavorite }) => {
 
 	return (
 		<>
-			<Header favorites={favorites} />
+			<Header />
 			<div className="detail">
 				<div className="detail__header--container">
 					<div className="detail__header">
@@ -60,7 +62,7 @@ const CharacterDetail = ({ data, getFavorite }) => {
 								</h2>
 								<button
 									className="detail__favorites--button"
-									onClick={e => getFavorite(e, character, favorites)}
+									onClick={e => handleFavorite(e, character)}
 								>
 									{favorites.length > 0 ? (
 										getHeart(favorites, character)

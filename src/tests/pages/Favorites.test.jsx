@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { MemoryRouter, Routes, Route } from 'react-router';
 import { useFavoriteStore } from '../../store';
 import Favorites from '../../pages/Favorites';
@@ -27,13 +27,11 @@ const mockedFavorites = [
 
 useFavoriteStore.setState({ favorites: mockedFavorites });
 
-const getFavorite = vi.fn();
-
 describe('Favorites', () => {
 	it('renders the Favorites component', () => {
 		render(
 			<MemoryRouter>
-				<Favorites getFavorite={getFavorite} />
+				<Favorites />
 			</MemoryRouter>
 		);
 	});
@@ -41,7 +39,7 @@ describe('Favorites', () => {
 	it('shows a list of favorite characters', () => {
 		render(
 			<MemoryRouter>
-				<Favorites getFavorite={getFavorite} />
+				<Favorites />
 			</MemoryRouter>
 		);
 
@@ -54,10 +52,7 @@ describe('Favorites', () => {
 		render(
 			<MemoryRouter initialEntries={['/favorites']}>
 				<Routes>
-					<Route
-						path="/favorites"
-						element={<Favorites getFavorite={getFavorite} />}
-					/>
+					<Route path="/favorites" element={<Favorites />} />
 					<Route path="/thor" element={<div>This is a Thor detail page</div>} />
 				</Routes>
 			</MemoryRouter>

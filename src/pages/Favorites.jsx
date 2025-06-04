@@ -4,12 +4,12 @@ import { Link } from 'react-router';
 import { useFavoriteStore } from '../store';
 import '../styles/Favorites.scss';
 
-const Favorites = ({ getFavorite }) => {
+const Favorites = () => {
 	const { favorites } = useFavoriteStore(state => state);
 
 	return (
 		<>
-			<Header favorites={favorites} />
+			<Header />
 			<div className="favorites">
 				<h2 className="favorites__title">FAVORITES</h2>
 				<div className="favorites__list--container">
@@ -25,11 +25,7 @@ const Favorites = ({ getFavorite }) => {
 										to={`/${item.name}`}
 										data-testid="favorites__list--link"
 									>
-										<CharacterCard
-											character={item}
-											getFavorite={getFavorite}
-											favorites={favorites}
-										/>
+										<CharacterCard character={item} />
 									</Link>
 								</li>
 							))}
