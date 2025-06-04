@@ -1,9 +1,9 @@
-import List from "./components/List";
-import Search from "./components/Search";
-import Header from "./components/Header";
-import "./Layout.scss";
+import List from "../components/List";
+import Search from "../components/Search";
+import Header from "../components/Header";
+import "../styles/Home.scss";
 
-const Layout = ({data, isError, isPending, getSearchTerm, refetch, numberOfResults, searchTerm, resetSearch, getFavorite, favorites}) => {
+const Home = ({data, isError, isPending, getSearchTerm, refetch, numberOfResults, searchTerm, resetSearch, getFavorite, favorites}) => {
   
   return (
     <>
@@ -16,4 +16,4 @@ const Layout = ({data, isError, isPending, getSearchTerm, refetch, numberOfResul
   )
 };
 
-export default Layout;
+export default Home;

@@ -1,7 +1,7 @@
-import CharacterCard from "./CharacterCard";
-import Header from "./Header";
+import CharacterCard from "../components/CharacterCard";
+import Header from "../components/Header";
 import { Link } from "react-router";
-import './Favorites.scss';
+import '../styles/Favorites.scss';
 
 const Favorites = ({ favorites, getFavorite }) => {
   return (

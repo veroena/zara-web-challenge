@@ -1,4 +1,4 @@
-import './ComicList.scss';
+import '../styles/ComicList.scss';
 import { UseGetComicList } from '../hooks/useGetComicList';
 
 const comicList = ({characterId}) => {

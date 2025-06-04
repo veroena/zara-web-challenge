@@ -1,6 +1,6 @@
 import HeartIconEmpty from '../assets/heart-icon-empty.png';
 import HeartIconFill from '../assets/heart-icon-fill.svg';
-import './CharacterCard.scss';
+import '../styles/CharacterCard.scss';
 
 const CharacterCard = ({ character, getFavorite, favorites }) => {
 

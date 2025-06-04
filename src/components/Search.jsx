@@ -1,4 +1,4 @@
-import "./Search.scss";
+import "../styles/Search.scss";
 
 const Search = ({ numberOfResults, refetch, getSearchTerm, searchTerm, resetSearch }) => {
 
@@ -18,7 +18,7 @@ const Search = ({ numberOfResults, refetch, getSearchTerm, searchTerm, resetSear
   return (
     <>
       <form className="search" onSubmit={handleSubmit}>
-        <input type="text" className="search__bar" placeholder="Search a character..." onChange={handleChange} value={searchTerm} onClick={() => handleReset()} />
+        <input type="text" name="search characters" className="search__bar" placeholder="Search a character..." onChange={handleChange} value={searchTerm} onClick={() => handleReset()} />
         <p className="search__results">{numberOfResults} results
         </p>
       </form>

@@ -3,7 +3,6 @@ import md5 from "md5";
 const publicKey = import.meta.env.VITE_PUBLIC_KEY;
 const privateKey = import.meta.env.VITE_PRIVATE_KEY;
 const apiBaseURL = "https://gateway.marvel.com/v1/public";
-// const initialNumberOfComics = 12
 
 export const useCreateComicURL = (characterId) => {
   

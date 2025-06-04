@@ -1,7 +1,7 @@
-import './App.scss';
-import Layout from './Layout';
-import CharacterDetail from './components/CharacterDetail';
-import Favorites from './components/Favorites';
+import './styles/App.scss';
+import Home from './pages/Home';
+import CharacterDetail from './pages/CharacterDetail';
+import Favorites from './pages/Favorites';
 import { createBrowserRouter, RouterProvider } from 'react-router';
 import { UseGetList } from "./hooks/useGetList";
 import { UseGetCharacterSearch } from "./hooks/useGetCharacterSearch";
@@ -41,7 +41,7 @@ const App = () => {
     {
       path: '/',
       element:
-        <Layout
+        <Home
           data={ searchData === undefined ? data?.data.results : searchData?.data.results }
           isError={ isError }
           isPending={ isPending }

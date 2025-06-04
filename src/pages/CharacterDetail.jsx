@@ -1,9 +1,9 @@
 import { useParams } from "react-router";
 import HeartIconEmpty from '../assets/heart-icon-empty.png';
 import HeartIconFill from '../assets/heart-icon-fill.svg';
-import Header from "./Header";
-import ComicList from "./ComicList";
-import "./CharacterDetail.scss";
+import Header from "../components/Header";
+import ComicList from "../components/ComicList";
+import "../styles/CharacterDetail.scss";
 
 const CharacterDetail = ({ data, favorites, getFavorite }) => {
   const params = useParams();

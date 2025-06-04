@@ -1,6 +1,6 @@
 import CharacterCard from "./CharacterCard";
 import { Link } from "react-router";
-import "./List.scss";
+import "../styles/List.scss";
 
 const List = ({data, isError, isPending, getFavorite, favorites}) => {
 

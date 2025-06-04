@@ -2,7 +2,7 @@ import { Link } from 'react-router';
 import MarvelLogo from '../assets/marvel-logo.png';
 import HeartIconEmpty from '../assets/heart-icon-empty.png';
 import HeartIconFill from '../assets/heart-icon-fill.svg';
-import './Header.scss';
+import '../styles/Header.scss';
 
 const Header = ({favorites}) => {
   return (
