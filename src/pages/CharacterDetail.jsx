@@ -3,15 +3,16 @@ import HeartIconEmpty from '../assets/heart-icon-empty.png';
 import HeartIconFill from '../assets/heart-icon-fill.svg';
 import Header from '../components/Header';
 import ComicList from '../components/ComicList';
+import { useFavoriteStore } from '../store';
 import '../styles/CharacterDetail.scss';
 
-const CharacterDetail = ({ data, favorites, getFavorite }) => {
+const CharacterDetail = ({ data, getFavorite }) => {
 	const params = useParams();
+	const { favorites } = useFavoriteStore(state => state);
 
 	const character = data.find(
 		character => character.name === params.characterName
 	);
-	// const characterFromFavorites = favorites.length > 0 && favorites.find(character => character.name === params.characterName);
 
 	const getHeart = (list, char) => {
 		const find = list.some(item => item.id === char.id);
@@ -36,15 +37,6 @@ const CharacterDetail = ({ data, favorites, getFavorite }) => {
 		}
 	};
 
-	// TODO implement character detail from a searched character the user has added to favorites
-	// const currentCharacter = () => {
-	//   if (character !== undefined) {
-	//     return character;
-	//   } else {
-	//     return characterFromFavorites;
-	//   }
-	// }
-
 	return (
 		<>
 			<Header favorites={favorites} />
@@ -68,7 +60,7 @@ const CharacterDetail = ({ data, favorites, getFavorite }) => {
 								</h2>
 								<button
 									className="detail__favorites--button"
-									onClick={e => getFavorite(e, character)}
+									onClick={e => getFavorite(e, character, favorites)}
 								>
 									{favorites.length > 0 ? (
 										getHeart(favorites, character)

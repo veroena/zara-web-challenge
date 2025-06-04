@@ -3,8 +3,10 @@ import MarvelLogo from '../assets/marvel-logo.png';
 import HeartIconEmpty from '../assets/heart-icon-empty.png';
 import HeartIconFill from '../assets/heart-icon-fill.svg';
 import '../styles/Header.scss';
+import { useFavoriteStore } from '../store';
 
-const Header = ({ favorites }) => {
+const Header = () => {
+	const { favorites } = useFavoriteStore(state => state);
 	return (
 		<div className="header">
 			<Link to="/" data-testid="header__link--marvel">

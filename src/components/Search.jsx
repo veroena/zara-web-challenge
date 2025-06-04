@@ -1,19 +1,17 @@
 import '../styles/Search.scss';
+import { useSearchStore } from '../store';
+import { UseGetCharacterSearch } from '../hooks/useGetCharacterSearch';
+
 
 const Search = ({
 	numberOfResults,
-	refetch,
-	getSearchTerm,
-	searchTerm,
-	resetSearch,
 }) => {
+	const { searchTerm, setSearchTerm, resetSearch } = useSearchStore((state) => state)
+	const { refetch } = UseGetCharacterSearch(searchTerm);
+	
 	const handleSubmit = event => {
 		event.preventDefault();
 		refetch();
-	};
-
-	const handleChange = event => {
-		getSearchTerm(event.target.value);
 	};
 
 	const handleReset = () => {
@@ -32,7 +30,7 @@ const Search = ({
 					name="search characters"
 					className="search__bar"
 					placeholder="Search a character..."
-					onChange={handleChange}
+					onChange={(event) => setSearchTerm(event.target.value)}
 					value={searchTerm}
 					onClick={() => handleReset()}
 					data-testid="search__bar"

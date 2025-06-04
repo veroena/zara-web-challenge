@@ -1,9 +1,12 @@
 import CharacterCard from '../components/CharacterCard';
 import Header from '../components/Header';
 import { Link } from 'react-router';
+import { useFavoriteStore } from '../store';
 import '../styles/Favorites.scss';
 
-const Favorites = ({ favorites, getFavorite }) => {
+const Favorites = ({ getFavorite }) => {
+	const { favorites } = useFavoriteStore(state => state);
+
 	return (
 		<>
 			<Header favorites={favorites} />

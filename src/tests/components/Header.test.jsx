@@ -2,15 +2,15 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import Header from '../../components/Header';
 import { MemoryRouter, Routes, Route } from 'react-router';
+import { useFavoriteStore } from '../../store';
 
-const favorites = [];
 const favoritesFilled = [{}, {}];
 
 describe('Header', () => {
 	it('renders the CharacterCard component', () => {
 		render(
 			<MemoryRouter>
-				<Header favorites={favorites} />)
+				<Header />
 			</MemoryRouter>
 		);
 	});
@@ -18,7 +18,7 @@ describe('Header', () => {
 	it('displays Marvel logo image as title', () => {
 		render(
 			<MemoryRouter>
-				<Header favorites={favorites} />
+				<Header />
 			</MemoryRouter>
 		);
 
@@ -33,7 +33,7 @@ describe('Header', () => {
 		render(
 			<MemoryRouter>
 				<Routes>
-					<Route path="/" element={<Header favorites={favorites} />} />
+					<Route path="/" element={<Header />} />
 					<Route path="/favorites" element={<div>Favorites Page</div>} />
 				</Routes>
 			</MemoryRouter>
@@ -51,7 +51,7 @@ describe('Header', () => {
 		render(
 			<MemoryRouter>
 				<Routes>
-					<Route path="/" element={<Header favorites={favorites} />} />
+					<Route path="/" element={<Header />} />
 					<Route path="/favorites" element={<div>Favorites Page</div>} />
 				</Routes>
 			</MemoryRouter>
@@ -66,7 +66,7 @@ describe('Header', () => {
 	it('shows empty heart icon when there are no favorites', () => {
 		render(
 			<MemoryRouter>
-				<Header favorites={favorites} />
+				<Header />
 			</MemoryRouter>
 		);
 
@@ -77,9 +77,10 @@ describe('Header', () => {
 	});
 
 	it('shows empty heart icon when there are some favorites', () => {
+		useFavoriteStore.setState({ favorites: favoritesFilled });
 		render(
 			<MemoryRouter>
-				<Header favorites={favoritesFilled} />
+				<Header />
 			</MemoryRouter>
 		);
 
@@ -90,9 +91,10 @@ describe('Header', () => {
 	});
 
 	it('shows favorites count', () => {
+		useFavoriteStore.setState({ favorites: favoritesFilled });
 		render(
 			<MemoryRouter>
-				<Header favorites={favoritesFilled} />
+				<Header />
 			</MemoryRouter>
 		);
 

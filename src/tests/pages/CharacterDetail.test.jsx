@@ -3,6 +3,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { MemoryRouter, Routes, Route } from 'react-router';
 import CharacterDetail from '../../pages/CharacterDetail';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useFavoriteStore } from '../../store';
 
 const data = [
 	{
@@ -25,8 +26,7 @@ const data = [
 	},
 ];
 
-const favorites = [];
-const favoritesWithCharacter = [
+const favoritesWithStorm = [
 	{
 		thumbnail: {
 			path: 'storm-image',
@@ -49,13 +49,7 @@ const wrappedCharacterDetail = character => {
 				<Routes>
 					<Route
 						path="/:characterName"
-						element={
-							<CharacterDetail
-								data={data}
-								favorites={favorites}
-								getFavorite={getFavorite}
-							/>
-						}
+						element={<CharacterDetail data={data} getFavorite={getFavorite} />}
 					></Route>
 				</Routes>
 			</MemoryRouter>
@@ -96,24 +90,8 @@ describe('CharacterDetail', () => {
 	});
 
 	it('shows an empty heart icon if the character is not in the favorites list', () => {
-		render(
-			<QueryClientProvider client={queryClient}>
-				<MemoryRouter initialEntries={['/thor']}>
-					<Routes>
-						<Route
-							path="/:characterName"
-							element={
-								<CharacterDetail
-									data={data}
-									favorites={favoritesWithCharacter}
-									getFavorite={getFavorite}
-								/>
-							}
-						></Route>
-					</Routes>
-				</MemoryRouter>
-			</QueryClientProvider>
-		);
+		useFavoriteStore.setState({ favorites: favoritesWithStorm });
+		render(wrappedCharacterDetail('thor'));
 
 		expect(screen.getByTestId('favorites__icon--empty')).toBeInTheDocument();
 		expect(
@@ -121,25 +99,9 @@ describe('CharacterDetail', () => {
 		).not.toBeInTheDocument();
 	});
 
-	it('shows a filled heart icon if the character is not in the favorites list', () => {
-		render(
-			<QueryClientProvider client={queryClient}>
-				<MemoryRouter initialEntries={['/storm']}>
-					<Routes>
-						<Route
-							path="/:characterName"
-							element={
-								<CharacterDetail
-									data={data}
-									favorites={favoritesWithCharacter}
-									getFavorite={getFavorite}
-								/>
-							}
-						></Route>
-					</Routes>
-				</MemoryRouter>
-			</QueryClientProvider>
-		);
+	it('shows a filled heart icon if the character is in the favorites list', () => {
+		useFavoriteStore.setState({ favorites: favoritesWithStorm });
+		render(wrappedCharacterDetail('storm'));
 
 		expect(screen.getByTestId('favorites__icon--fill')).toBeInTheDocument();
 		expect(
@@ -148,6 +110,7 @@ describe('CharacterDetail', () => {
 	});
 
 	it('an action is triggered on favorites button click', () => {
+		useFavoriteStore.setState({ favorites: [] });
 		render(wrappedCharacterDetail('storm'));
 
 		const favoritesButton = screen.getByTestId('favorites__icon--empty');

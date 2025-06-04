@@ -7,23 +7,16 @@ const Home = ({
 	data,
 	isError,
 	isPending,
-	getSearchTerm,
-	refetch,
 	numberOfResults,
-	searchTerm,
-	resetSearch,
 	getFavorite,
 	favorites,
 }) => {
+
 	return (
 		<>
 			<Header favorites={favorites} />
 			<div className="layout">
 				<Search
-					searchTerm={searchTerm}
-					getSearchTerm={getSearchTerm}
-					resetSearch={resetSearch}
-					refetch={refetch}
 					numberOfResults={numberOfResults}
 				/>
 				<CharacterList
