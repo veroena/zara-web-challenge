@@ -13,3 +13,21 @@ To avoid prop drilling, this application uses [Zustand](https://zustand-demo.pmn
 The test implementation is done with [Vitest](https://vitest.dev/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/).
 
 In the project directory you can run `npm run dev` to run the app in development mode.
+
+### Cloning and Running the Application in local
+
+Clone the project into local
+
+Install all the npm packages. Go into the project folder and type the following command to install all npm packages
+
+```sh
+npm install
+```
+
+In order to run the application type the following command
+
+```sh
+npm run dev
+```
+
+The application runs on localhost:5173
