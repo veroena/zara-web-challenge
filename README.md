@@ -1,12 +1,15 @@
-# React + Vite
+# Zara Web Challenge
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a small application to obtain information about characters from the Marvel Universe.
 
-Currently, two official plugins are available:
+The user can search characters, see their information, and also add them to a favorites list by clicking the heart icon in the character card.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+There are two views: the main one shows a list of 50 characters in alphabetical order or the result of the characters obtained by search. Also, there is a favorites icon at the top of the page that the user can click to show their stored favorite characters. There is also a detailed view of the character when the user clicks one of the cards that shows more information about the character, as well as a list of comics of the character in order of publication date.
 
-## Expanding the ESLint configuration
+The data is obtained from the Marvel API and the requests are handled with [Tanstack Query](https://tanstack.com/query/latest) since it simplifies API calls and offers a lot of advantages like data caching, loading states, error states, retries and even auto-refetching.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+To avoid prop drilling, this application uses [Zustand](https://zustand-demo.pmnd.rs/) for its simplicity, speed and easy to use API based on hooks.
+
+The test implementation is done with [Vitest](https://vitest.dev/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/).
+
+In the project directory you can run `npm run dev` to run the app in development mode.
