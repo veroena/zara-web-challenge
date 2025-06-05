@@ -5,9 +5,9 @@ import { describe, it, expect, vi } from 'vitest';
 import * as useHandleFavoriteHook from '../../hooks/useHandleFavorite';
 import * as UseGetCharacterListHooks from '../../hooks/useGetCharacterList';
 import * as UseGetCharacterSearchHooks from '../../hooks/useGetCharacterSearch';
-import { useFavoriteStore } from '../../store';
-import { useSearchStore } from '../../store';
-import CharacterDetail from '../../pages/CharacterDetail';
+import { useFavoriteStore } from '../../store/store';
+import { useSearchStore } from '../../store/store';
+import CharacterDetail from '../../pages/CharacterDetail/CharacterDetail';
 
 const mockData = {
 	data: {

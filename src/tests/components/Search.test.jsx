@@ -3,8 +3,8 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import * as UseGetCharacterSearchHook from '../../hooks/useGetCharacterSearch';
 import * as UseGetCharacterListHook from '../../hooks/useGetCharacterList';
-import { useSearchStore } from '../../store';
-import Search from '../../components/Search';
+import { useSearchStore } from '../../store/store';
+import Search from '../../components/Search/Search';
 
 const queryClient = new QueryClient();
 

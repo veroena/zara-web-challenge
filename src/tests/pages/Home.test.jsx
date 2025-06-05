@@ -2,7 +2,7 @@ import { MemoryRouter } from 'react-router';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
 import { describe, it } from 'vitest';
-import Home from '../../pages/Home';
+import Home from '../../pages/Home/Home';
 
 const data = [];
 const isError = true;

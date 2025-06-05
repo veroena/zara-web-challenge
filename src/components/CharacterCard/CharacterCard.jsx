@@ -1,8 +1,8 @@
-import { useHandleFavorite } from '../hooks/useHandleFavorite';
-import { useFavoriteStore } from '../store';
-import HeartIconEmpty from '../assets/heart-icon-empty.png';
-import HeartIconFill from '../assets/heart-icon-fill.svg';
-import '../styles/CharacterCard.scss';
+import { useHandleFavorite } from '../../hooks/useHandleFavorite';
+import { useFavoriteStore } from '../../store/store';
+import HeartIconEmpty from '../../assets/heart-icon-empty.png';
+import HeartIconFill from '../../assets/heart-icon-fill.svg';
+import './CharacterCard.styles.scss';
 
 const CharacterCard = ({ character }) => {
 	const { favorites } = useFavoriteStore(state => state);
@@ -32,7 +32,7 @@ const CharacterCard = ({ character }) => {
 	};
 
 	return (
-		<div className="card">
+		<article className="card">
 			<img
 				src={character.thumbnail.path + '.' + character.thumbnail.extension}
 				alt={character.name}
@@ -60,7 +60,7 @@ const CharacterCard = ({ character }) => {
 					)}
 				</button>
 			</div>
-		</div>
+		</article>
 	);
 };
 

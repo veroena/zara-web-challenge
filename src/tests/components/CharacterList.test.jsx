@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import * as UseGetCharacterListHooks from '../../hooks/useGetCharacterList';
-import CharacterList from '../../components/CharacterList';
+import CharacterList from '../../components/CharacterList/CharacterList';
 
 const mockData = {
 	data: {

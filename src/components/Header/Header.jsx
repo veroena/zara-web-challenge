@@ -1,26 +1,31 @@
 import { Link } from 'react-router';
-import { useFavoriteStore } from '../store';
-import MarvelLogo from '../assets/marvel-logo.png';
-import HeartIconEmpty from '../assets/heart-icon-empty.png';
-import HeartIconFill from '../assets/heart-icon-fill.svg';
-import '../styles/Header.scss';
+import { useFavoriteStore } from '../../store/store';
+import MarvelLogo from '../../assets/marvel-logo.png';
+import HeartIconEmpty from '../../assets/heart-icon-empty.png';
+import HeartIconFill from '../../assets/heart-icon-fill.svg';
+import './Header.styles.scss';
 
 const Header = () => {
 	const { favorites } = useFavoriteStore(state => state);
 	return (
-		<div className="header">
-			<Link to="/" data-testid="header__link--marvel">
-				<h1 className="header__title">
+		<header className="header">
+			<h1 className="header__title" aria-label="Zara Web Challenge">
+				Zara Web Challenge
+			</h1>
+			<nav className="header__container">
+				<Link to="/" data-testid="header__link--marvel">
 					<img
 						src={MarvelLogo}
 						alt="Marvel Logo"
 						width="122"
 						data-testid="marvel__logo"
 					/>
-				</h1>
-			</Link>
-			<Link to="/favorites" data-testid="header__link--favorites">
-				<div className="header__favorites">
+				</Link>
+				<Link
+					to="/favorites"
+					data-testid="header__link--favorites"
+					className="header__favorites"
+				>
 					{favorites.length === 0 ? (
 						<img
 							src={HeartIconEmpty}
@@ -44,9 +49,9 @@ const Header = () => {
 					>
 						{favorites.length}
 					</p>
-				</div>
-			</Link>
-		</div>
+				</Link>
+			</nav>
+		</header>
 	);
 };
 

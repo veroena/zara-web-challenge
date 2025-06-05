@@ -1,8 +1,8 @@
 import { Link } from 'react-router';
-import { useFavoriteStore } from '../store';
-import CharacterCard from '../components/CharacterCard';
-import Header from '../components/Header';
-import '../styles/Favorites.scss';
+import { useFavoriteStore } from '../../store/store';
+import CharacterCard from '../../components/CharacterCard/CharacterCard';
+import Header from '../../components/Header/Header';
+import './Favorites.styles.scss';
 
 const Favorites = () => {
 	const { favorites } = useFavoriteStore(state => state);

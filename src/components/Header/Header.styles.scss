@@ -1,4 +1,12 @@
 .header {
+	.header__title {
+		visibility: hidden;
+		height: 0;
+		width: 0;
+	}
+}
+
+.header__container {
 	background-color: #000000;
 	height: 84px;
 	display: flex;

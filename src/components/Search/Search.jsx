@@ -1,7 +1,7 @@
-import { UseGetCharacterList } from '../hooks/useGetCharacterList';
-import { UseGetCharacterSearch } from '../hooks/useGetCharacterSearch';
-import { useSearchStore } from '../store';
-import '../styles/Search.scss';
+import { UseGetCharacterList } from '../../hooks/useGetCharacterList';
+import { UseGetCharacterSearch } from '../../hooks/useGetCharacterSearch';
+import { useSearchStore } from '../../store/store';
+import './Search.styles.scss';
 
 const Search = () => {
 	const { searchTerm, setSearchTerm, resetSearch } = useSearchStore();

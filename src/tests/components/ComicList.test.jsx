@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import * as useGetComicListHooks from '../../hooks/useGetComicList';
-import ComicList from '../../components/ComicList';
+import ComicList from '../../components/ComicList/ComicList';
 
 const queryClient = new QueryClient();
 

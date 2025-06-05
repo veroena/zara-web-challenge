@@ -1,4 +1,4 @@
-import { useFavoriteStore } from '../store';
+import { useFavoriteStore } from '../store/store';
 
 export const useHandleFavorite = () => {
 	const { favorites, setFavorites } = useFavoriteStore(state => state);

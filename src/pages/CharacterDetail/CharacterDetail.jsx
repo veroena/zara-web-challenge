@@ -1,14 +1,14 @@
 import { useParams } from 'react-router';
-import { UseGetCharacterList } from '../hooks/useGetCharacterList';
-import { UseGetCharacterSearch } from '../hooks/useGetCharacterSearch';
-import { useHandleFavorite } from '../hooks/useHandleFavorite';
-import { useFavoriteStore } from '../store';
-import { useSearchStore } from '../store';
-import ComicList from '../components/ComicList';
-import Header from '../components/Header';
-import HeartIconEmpty from '../assets/heart-icon-empty.png';
-import HeartIconFill from '../assets/heart-icon-fill.svg';
-import '../styles/CharacterDetail.scss';
+import { UseGetCharacterList } from '../../hooks/useGetCharacterList';
+import { UseGetCharacterSearch } from '../../hooks/useGetCharacterSearch';
+import { useHandleFavorite } from '../../hooks/useHandleFavorite';
+import { useFavoriteStore } from '../../store/store';
+import { useSearchStore } from '../../store/store';
+import ComicList from '../../components/ComicList/ComicList';
+import Header from '../../components/Header/Header';
+import HeartIconEmpty from '../../assets/heart-icon-empty.png';
+import HeartIconFill from '../../assets/heart-icon-fill.svg';
+import './CharacterDetail.styles.scss';
 
 const CharacterDetail = () => {
 	const { searchTerm } = useSearchStore(state => state);

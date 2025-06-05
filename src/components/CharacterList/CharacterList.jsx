@@ -1,9 +1,9 @@
 import { Link } from 'react-router';
-import { UseGetCharacterList } from '../hooks/useGetCharacterList';
-import { UseGetCharacterSearch } from '../hooks/useGetCharacterSearch';
-import { useSearchStore } from '../store';
-import CharacterCard from './CharacterCard';
-import '../styles/List.scss';
+import { UseGetCharacterList } from '../../hooks/useGetCharacterList';
+import { UseGetCharacterSearch } from '../../hooks/useGetCharacterSearch';
+import { useSearchStore } from '../../store/store';
+import CharacterCard from '../CharacterCard/CharacterCard';
+import './CharacterList.styles.scss';
 
 const CharacterList = () => {
 	const { searchTerm } = useSearchStore(state => state);

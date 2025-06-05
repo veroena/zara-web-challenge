@@ -1,8 +1,8 @@
-import './styles/App.scss';
-import Home from './pages/Home';
-import CharacterDetail from './pages/CharacterDetail';
-import Favorites from './pages/Favorites';
+import CharacterDetail from './pages/CharacterDetail/CharacterDetail';
+import Favorites from './pages/Favorites/Favorites';
+import Home from './pages/Home/Home';
 import { createBrowserRouter, RouterProvider } from 'react-router';
+import './App.scss';
 
 const App = () => {
 	const router = createBrowserRouter([

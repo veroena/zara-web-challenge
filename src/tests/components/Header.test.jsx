@@ -1,8 +1,8 @@
 import { MemoryRouter, Routes, Route } from 'react-router';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
-import { useFavoriteStore } from '../../store';
-import Header from '../../components/Header';
+import { useFavoriteStore } from '../../store/store';
+import Header from '../../components/Header/Header';
 
 const favoritesFilled = [{}, {}];
 
@@ -20,14 +20,12 @@ describe('Header', () => {
 		render(wrappedHeader);
 	});
 
-	it('displays Marvel logo image as title', () => {
+	it('displays Marvel logo image', () => {
 		render(wrappedHeader);
 
 		const marvelLogoImage = screen.getByAltText('Marvel Logo');
 
-		expect(screen.getByRole('heading', { level: 1 })).toContain(
-			marvelLogoImage
-		);
+		expect(marvelLogoImage).toBeInTheDocument();
 	});
 
 	it('navigates to other page when the favorites icon is clicked', () => {
