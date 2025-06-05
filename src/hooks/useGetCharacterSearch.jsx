@@ -11,6 +11,7 @@ export const UseGetCharacterSearch = characterName => {
 			const response = await fetch(url);
 			return await response.json();
 		},
+		staleTime: Infinity,
 		gcTime: 1000 * 60 * 60 * 24,
 	});
 };

@@ -27,21 +27,22 @@ const mockedFavorites = [
 
 useFavoriteStore.setState({ favorites: mockedFavorites });
 
+const wrappedFavorites = (
+	<MemoryRouter initialEntries={['/favorites']}>
+		<Routes>
+			<Route path="/favorites" element={<Favorites />} />
+			<Route path="/thor" element={<div>This is a Thor detail page</div>} />
+		</Routes>
+	</MemoryRouter>
+);
+
 describe('Favorites', () => {
 	it('renders the Favorites component', () => {
-		render(
-			<MemoryRouter>
-				<Favorites />
-			</MemoryRouter>
-		);
+		render(wrappedFavorites);
 	});
 
 	it('shows a list of favorite characters', () => {
-		render(
-			<MemoryRouter>
-				<Favorites />
-			</MemoryRouter>
-		);
+		render(wrappedFavorites);
 
 		expect(screen.getAllByTestId('favorites__list--item')).toHaveLength(
 			mockedFavorites.length
@@ -49,14 +50,7 @@ describe('Favorites', () => {
 	});
 
 	it('navigates to other page when the link on a favorite card is clicked', () => {
-		render(
-			<MemoryRouter initialEntries={['/favorites']}>
-				<Routes>
-					<Route path="/favorites" element={<Favorites />} />
-					<Route path="/thor" element={<div>This is a Thor detail page</div>} />
-				</Routes>
-			</MemoryRouter>
-		);
+		render(wrappedFavorites);
 
 		const linkFavorites = screen.getAllByTestId('favorites__list--link');
 

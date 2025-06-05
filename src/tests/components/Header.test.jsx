@@ -6,21 +6,22 @@ import { useFavoriteStore } from '../../store';
 
 const favoritesFilled = [{}, {}];
 
+const wrappedHeader = (
+	<MemoryRouter>
+		<Routes>
+			<Route path="/" element={<Header />} />
+			<Route path="/favorites" element={<div>Favorites Page</div>} />
+		</Routes>
+	</MemoryRouter>
+);
+
 describe('Header', () => {
 	it('renders the CharacterCard component', () => {
-		render(
-			<MemoryRouter>
-				<Header />
-			</MemoryRouter>
-		);
+		render(wrappedHeader);
 	});
 
 	it('displays Marvel logo image as title', () => {
-		render(
-			<MemoryRouter>
-				<Header />
-			</MemoryRouter>
-		);
+		render(wrappedHeader);
 
 		const marvelLogoImage = screen.getByAltText('Marvel Logo');
 
@@ -30,14 +31,7 @@ describe('Header', () => {
 	});
 
 	it('navigates to other page when the favorites icon is clicked', () => {
-		render(
-			<MemoryRouter>
-				<Routes>
-					<Route path="/" element={<Header />} />
-					<Route path="/favorites" element={<div>Favorites Page</div>} />
-				</Routes>
-			</MemoryRouter>
-		);
+		render(wrappedHeader);
 
 		expect(screen.getByAltText('Marvel Logo')).toBeInTheDocument();
 
@@ -48,14 +42,7 @@ describe('Header', () => {
 	});
 
 	it('returns to page when the Marvel logo link is clicked', () => {
-		render(
-			<MemoryRouter>
-				<Routes>
-					<Route path="/" element={<Header />} />
-					<Route path="/favorites" element={<div>Favorites Page</div>} />
-				</Routes>
-			</MemoryRouter>
-		);
+		render(wrappedHeader);
 
 		fireEvent.click(screen.getByTestId('header__link--marvel'));
 
@@ -64,11 +51,7 @@ describe('Header', () => {
 	});
 
 	it('shows empty heart icon when there are no favorites', () => {
-		render(
-			<MemoryRouter>
-				<Header />
-			</MemoryRouter>
-		);
+		render(wrappedHeader);
 
 		expect(screen.getByTestId('header__favorites--empty')).toBeInTheDocument();
 		expect(
@@ -78,11 +61,7 @@ describe('Header', () => {
 
 	it('shows empty heart icon when there are some favorites', () => {
 		useFavoriteStore.setState({ favorites: favoritesFilled });
-		render(
-			<MemoryRouter>
-				<Header />
-			</MemoryRouter>
-		);
+		render(wrappedHeader);
 
 		expect(screen.getByTestId('header__favorites--fill')).toBeInTheDocument();
 		expect(
@@ -92,11 +71,7 @@ describe('Header', () => {
 
 	it('shows favorites count', () => {
 		useFavoriteStore.setState({ favorites: favoritesFilled });
-		render(
-			<MemoryRouter>
-				<Header />
-			</MemoryRouter>
-		);
+		render(wrappedHeader);
 
 		expect(screen.getByTestId('header__favorites--count')).toHaveTextContent(
 			favoritesFilled.length

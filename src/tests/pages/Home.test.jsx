@@ -11,23 +11,21 @@ const numberOfResults = 10;
 
 const queryClient = new QueryClient();
 
-const homeWithMemoryRouter = () => {
-	return (
-		<MemoryRouter>
-			<QueryClientProvider client={queryClient}>
-				<Home
-					data={data}
-					isError={!isError}
-					isPending={!isPending}
-					numberOfResults={numberOfResults}
-				/>
-			</QueryClientProvider>
-		</MemoryRouter>
-	);
-};
+const homeWithMemoryRouter = (
+	<MemoryRouter>
+		<QueryClientProvider client={queryClient}>
+			<Home
+				data={data}
+				isError={!isError}
+				isPending={!isPending}
+				numberOfResults={numberOfResults}
+			/>
+		</QueryClientProvider>
+	</MemoryRouter>
+);
 
 describe('Home', () => {
 	it('renders the Home component', () => {
-		render(homeWithMemoryRouter());
+		render(homeWithMemoryRouter);
 	});
 });

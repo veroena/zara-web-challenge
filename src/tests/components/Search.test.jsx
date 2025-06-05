@@ -4,16 +4,72 @@ import Search from '../../components/Search';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useSearchStore } from '../../store';
 import * as UseGetCharacterSearchHook from '../../hooks/useGetCharacterSearch';
+import * as UseGetCharacterListHook from '../../hooks/useGetCharacterList';
 
 const queryClient = new QueryClient();
 
-const wrappedSearchComponent = numberOfResults => {
+const wrappedSearchComponent = () => {
 	return (
 		<QueryClientProvider client={queryClient}>
-			<Search numberOfResults={numberOfResults} />
+			<Search />
 		</QueryClientProvider>
 	);
 };
+
+const mockData = {
+	data: {
+		results: [
+			{
+				thumbnail: {
+					path: 'thor-image',
+					extension: 'jpg',
+				},
+				id: 1,
+				name: 'thor',
+				description: 'Norse god',
+			},
+			{
+				thumbnail: {
+					path: 'storm-image',
+					extension: 'jpg',
+				},
+				id: 2,
+				name: 'storm',
+				description: 'mutant part of the X-Men',
+			},
+		],
+	},
+};
+
+const mockDataSearch = {
+	data: {
+		results: [
+			{
+				thumbnail: {
+					path: 'iron-man-image',
+					extension: 'jpg',
+				},
+				id: 1,
+				name: 'iron man',
+				description: 'Tony Stark',
+			},
+		],
+	},
+};
+
+const UseGetCharacterListSpy = vi.spyOn(
+	UseGetCharacterListHook,
+	'UseGetCharacterList'
+);
+UseGetCharacterListSpy.mockReturnValue({ data: mockData });
+
+const UseGetCharacterSearchSpy = vi.spyOn(
+	UseGetCharacterSearchHook,
+	'UseGetCharacterSearch'
+);
+UseGetCharacterSearchSpy.mockReturnValue({ searchData: mockDataSearch });
+
+useSearchStore.setState({ searchTerm: '' });
 
 describe('Search', () => {
 	it('renders the Search component', () => {
@@ -36,11 +92,10 @@ describe('Search', () => {
 	});
 
 	it('shows the number of results', () => {
-		const newNumberOfResults = 7;
-		render(wrappedSearchComponent(newNumberOfResults));
+		render(wrappedSearchComponent());
 
 		expect(screen.getByTestId('search__results')).toHaveTextContent(
-			newNumberOfResults
+			mockData.data.results.length
 		);
 	});
 

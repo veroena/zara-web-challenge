@@ -10,9 +10,9 @@ export const useSearchStore = create(set => ({
 	},
 }));
 
-export const useFavoriteStore = create((set) => ({
+export const useFavoriteStore = create(set => ({
 	favorites: [],
 	setFavorites: newFavorite => {
-		set(() => ({favorites: newFavorite}))
+		set(() => ({ favorites: newFavorite }));
 	},
 }));

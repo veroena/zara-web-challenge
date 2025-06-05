@@ -5,14 +5,23 @@ import Header from '../components/Header';
 import ComicList from '../components/ComicList';
 import { useFavoriteStore } from '../store';
 import { useHandleFavorite } from '../hooks/useHandleFavorite';
+import { useSearchStore } from '../store';
+import { UseGetCharacterList } from '../hooks/useGetCharacterList';
+import { UseGetCharacterSearch } from '../hooks/useGetCharacterSearch';
 import '../styles/CharacterDetail.scss';
 
-const CharacterDetail = ({ data }) => {
+const CharacterDetail = () => {
+	const { searchTerm } = useSearchStore(state => state);
+	const { data } = UseGetCharacterList();
+	const { data: searchData } = UseGetCharacterSearch(searchTerm);
 	const params = useParams();
 	const { favorites } = useFavoriteStore(state => state);
 	const { handleFavorite } = useHandleFavorite();
 
-	const character = data.find(
+	const validData =
+		searchData === undefined ? data?.data.results : searchData?.data.results;
+
+	const character = validData.find(
 		character => character.name === params.characterName
 	);
 

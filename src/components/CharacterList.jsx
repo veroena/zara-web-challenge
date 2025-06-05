@@ -1,8 +1,18 @@
 import CharacterCard from './CharacterCard';
 import { Link } from 'react-router';
+import { UseGetCharacterList } from '../hooks/useGetCharacterList';
+import { UseGetCharacterSearch } from '../hooks/useGetCharacterSearch';
+import { useSearchStore } from '../store';
 import '../styles/List.scss';
 
-const CharacterList = ({ data, isError, isPending }) => {
+const CharacterList = () => {
+	const { searchTerm } = useSearchStore(state => state);
+	const { data, isError, isPending } = UseGetCharacterList();
+	const { data: searchData } = UseGetCharacterSearch(searchTerm);
+
+	const validData =
+		searchData === undefined ? data?.data.results : searchData?.data.results;
+
 	return (
 		<div>
 			{isError && (
@@ -11,7 +21,7 @@ const CharacterList = ({ data, isError, isPending }) => {
 			{isPending && <div data-testid="loading__message">Loading...</div>}
 			{!isPending && !isError && (
 				<ul className="list" data-testid="character__list">
-					{data.map(item => (
+					{validData.map(item => (
 						<li
 							key={item.id}
 							className="list__item"

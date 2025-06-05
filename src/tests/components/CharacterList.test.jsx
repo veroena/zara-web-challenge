@@ -1,46 +1,60 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import CharacterList from '../../components/CharacterList';
 import { MemoryRouter, Routes, Route } from 'react-router';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import * as UseGetCharacterListHooks from '../../hooks/useGetCharacterList';
 
-const data = [
-	{
-		thumbnail: {
-			path: 'imagepath',
-			extension: 'jpg',
-		},
-		name: 'Character1',
+const mockData = {
+	data: {
+		results: [
+			{
+				thumbnail: {
+					path: 'thor-image',
+					extension: 'jpg',
+				},
+				id: 1,
+				name: 'thor',
+				description: 'Norse god',
+			},
+			{
+				thumbnail: {
+					path: 'storm-image',
+					extension: 'jpg',
+				},
+				id: 2,
+				name: 'storm',
+				description: 'mutant part of the X-Men',
+			},
+		],
 	},
-	{
-		thumbnail: {
-			path: 'imagepath',
-			extension: 'jpg',
-		},
-		name: 'Character2',
-	},
-];
-const isError = true;
-const isPending = true;
+};
+
+const queryClient = new QueryClient();
+
+const wrappedCharacterList = (
+	<QueryClientProvider client={queryClient}>
+		<MemoryRouter>
+			<Routes>
+				<Route path="/" element={<CharacterList />}></Route>
+				<Route path="/thor" element={<div>Thor detail</div>} />
+			</Routes>
+		</MemoryRouter>
+	</QueryClientProvider>
+);
 
 describe('CharacterList', () => {
 	it('renders the CharacterList component', () => {
-		render(
-			<CharacterList
-				data={data}
-				isError={isError}
-				isPending={isPending}
-			/>
-		);
+		render(wrappedCharacterList);
 	});
 
 	it('shows an error message when the request returns an error', () => {
-		render(
-			<CharacterList
-				data={data}
-				isError={isError}
-				isPending={!isPending}
-			/>
+		const UseGetCharacterListSpy = vi.spyOn(
+			UseGetCharacterListHooks,
+			'UseGetCharacterList'
 		);
+		UseGetCharacterListSpy.mockReturnValue({ isError: true });
+		render(wrappedCharacterList);
 
 		expect(screen.getByTestId('error__message')).toBeInTheDocument();
 		expect(screen.getByTestId('error__message')).toHaveTextContent(
@@ -49,25 +63,23 @@ describe('CharacterList', () => {
 	});
 
 	it('does not render a list when the request returns an error', () => {
-		render(
-			<CharacterList
-				data={data}
-				isError={isError}
-				isPending={!isPending}
-			/>
+		const UseGetCharacterListSpy = vi.spyOn(
+			UseGetCharacterListHooks,
+			'UseGetCharacterList'
 		);
+		UseGetCharacterListSpy.mockReturnValue({ isError: true });
+		render(wrappedCharacterList);
 
 		expect(screen.queryByTestId('character__list')).not.toBeInTheDocument();
 	});
 
 	it('shows a loading message when the request is pending', () => {
-		render(
-			<CharacterList
-				data={data}
-				isError={!isError}
-				isPending={isPending}
-			/>
+		const UseGetCharacterListSpy = vi.spyOn(
+			UseGetCharacterListHooks,
+			'UseGetCharacterList'
 		);
+		UseGetCharacterListSpy.mockReturnValue({ isPending: true });
+		render(wrappedCharacterList);
 
 		expect(screen.getByTestId('loading__message')).toBeInTheDocument();
 		expect(screen.getByTestId('loading__message')).toHaveTextContent(
@@ -76,29 +88,23 @@ describe('CharacterList', () => {
 	});
 
 	it('does not render a list when the request is pending', () => {
-		render(
-			<CharacterList
-				data={data}
-				isError={!isError}
-				isPending={isPending}
-			/>
+		const UseGetCharacterListSpy = vi.spyOn(
+			UseGetCharacterListHooks,
+			'UseGetCharacterList'
 		);
+		UseGetCharacterListSpy.mockReturnValue({ isPending: true });
+		render(wrappedCharacterList);
 
 		expect(screen.queryByTestId('character__list')).not.toBeInTheDocument();
 	});
 
 	it('shows a list when the request succeeds', () => {
-		render(
-			<MemoryRouter>
-				<CharacterList
-					data={data}
-					isError={!isError}
-					isPending={!isPending}
-
-
-				/>
-			</MemoryRouter>
+		const UseGetCharacterListSpy = vi.spyOn(
+			UseGetCharacterListHooks,
+			'UseGetCharacterList'
 		);
+		UseGetCharacterListSpy.mockReturnValue({ data: mockData });
+		render(wrappedCharacterList);
 
 		expect(screen.getByTestId('character__list')).toBeInTheDocument();
 		expect(screen.queryByTestId('loading__message')).not.toBeInTheDocument();
@@ -106,56 +112,34 @@ describe('CharacterList', () => {
 	});
 
 	it('shows elements provided by data', () => {
-		render(
-			<MemoryRouter>
-				<CharacterList
-					data={data}
-					isError={!isError}
-					isPending={!isPending}
-
-
-				/>
-			</MemoryRouter>
+		const UseGetCharacterListSpy = vi.spyOn(
+			UseGetCharacterListHooks,
+			'UseGetCharacterList'
 		);
+		UseGetCharacterListSpy.mockReturnValue({ data: mockData });
+		render(wrappedCharacterList);
 
 		expect(screen.getAllByTestId('character__list--item')).toHaveLength(
-			data.length
+			mockData.data.results.length
 		);
-		expect(screen.getAllByTestId('card__name')[0]).toHaveTextContent(
-			'Character1'
-		);
-		expect(screen.getAllByTestId('card__name')[1]).toHaveTextContent(
-			'Character2'
-		);
+		expect(screen.getAllByTestId('card__name')[0]).toHaveTextContent('thor');
+		expect(screen.getAllByTestId('card__name')[1]).toHaveTextContent('storm');
 	});
 
 	it('navigates to other page when the links inside the list are clicked', () => {
-		render(
-			<MemoryRouter>
-				<Routes>
-					<Route
-						path="/"
-						element={
-							<CharacterList
-								data={data}
-								isError={!isError}
-								isPending={!isPending}
-			
-			
-							/>
-						}
-					/>
-					<Route path="/character1" element={<div>Character 1 element</div>} />
-				</Routes>
-			</MemoryRouter>
+		const UseGetCharacterListSpy = vi.spyOn(
+			UseGetCharacterListHooks,
+			'UseGetCharacterList'
 		);
+		UseGetCharacterListSpy.mockReturnValue({ data: mockData });
+		render(wrappedCharacterList);
 
 		expect(screen.getByTestId('character__list')).toBeInTheDocument();
 		expect(screen.queryByText('Character 1 element')).not.toBeInTheDocument();
 
 		fireEvent.click(screen.getAllByTestId('character__link')[0]);
 
-		expect(screen.getByText('Character 1 element')).toBeInTheDocument();
+		expect(screen.getByText('Thor detail')).toBeInTheDocument();
 		expect(screen.queryByTestId('character__list')).not.toBeInTheDocument();
 	});
 });

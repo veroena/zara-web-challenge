@@ -4,28 +4,51 @@ import { MemoryRouter, Routes, Route } from 'react-router';
 import CharacterDetail from '../../pages/CharacterDetail';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useFavoriteStore } from '../../store';
+import { useSearchStore } from '../../store';
 import * as useHandleFavoriteHook from '../../hooks/useHandleFavorite';
+import * as UseGetCharacterListHooks from '../../hooks/useGetCharacterList';
+import * as UseGetCharacterSearchHooks from '../../hooks/useGetCharacterSearch';
 
-const data = [
-	{
-		thumbnail: {
-			path: 'thor-image',
-			extension: 'jpg',
-		},
-		id: 1,
-		name: 'thor',
-		description: 'Norse god',
+const mockData = {
+	data: {
+		results: [
+			{
+				thumbnail: {
+					path: 'thor-image',
+					extension: 'jpg',
+				},
+				id: 1,
+				name: 'thor',
+				description: 'Norse god',
+			},
+			{
+				thumbnail: {
+					path: 'storm-image',
+					extension: 'jpg',
+				},
+				id: 2,
+				name: 'storm',
+				description: 'mutant part of the X-Men',
+			},
+		],
 	},
-	{
-		thumbnail: {
-			path: 'storm-image',
-			extension: 'jpg',
-		},
-		id: 2,
-		name: 'storm',
-		description: 'mutant part of the X-Men',
+};
+
+const mockDataSearch = {
+	data: {
+		results: [
+			{
+				thumbnail: {
+					path: 'iron-man-image',
+					extension: 'jpg',
+				},
+				id: 1,
+				name: 'iron man',
+				description: 'Tony Stark',
+			},
+		],
 	},
-];
+};
 
 const favoritesWithStorm = [
 	{
@@ -46,15 +69,26 @@ const wrappedCharacterDetail = character => {
 		<QueryClientProvider client={queryClient}>
 			<MemoryRouter initialEntries={[`/${character}`]}>
 				<Routes>
-					<Route
-						path="/:characterName"
-						element={<CharacterDetail data={data} />}
-					></Route>
+					<Route path="/:characterName" element={<CharacterDetail />}></Route>
 				</Routes>
 			</MemoryRouter>
 		</QueryClientProvider>
 	);
 };
+
+const UseGetCharacterListSpy = vi.spyOn(
+	UseGetCharacterListHooks,
+	'UseGetCharacterList'
+);
+UseGetCharacterListSpy.mockReturnValue({ data: mockData });
+
+const UseGetCharacterSearchSpy = vi.spyOn(
+	UseGetCharacterSearchHooks,
+	'UseGetCharacterSearch'
+);
+UseGetCharacterSearchSpy.mockReturnValue({ searchData: mockDataSearch });
+
+useSearchStore.setState({ searchTerm: '' });
 
 describe('CharacterDetail', () => {
 	it('renders the CharacterDetail component', () => {
@@ -109,7 +143,10 @@ describe('CharacterDetail', () => {
 	});
 
 	it('an action is triggered on favorites button click', () => {
-		const useHandleFavoriteSpy = vi.spyOn(useHandleFavoriteHook, 'useHandleFavorite');
+		const useHandleFavoriteSpy = vi.spyOn(
+			useHandleFavoriteHook,
+			'useHandleFavorite'
+		);
 		useHandleFavoriteSpy.mockReturnValue({ handleFavorite: vi.fn() });
 
 		useFavoriteStore.setState({ favorites: [] });
