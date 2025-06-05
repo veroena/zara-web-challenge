@@ -1,8 +1,8 @@
+import { MemoryRouter } from 'react-router';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
 import { describe, it } from 'vitest';
-import { MemoryRouter } from 'react-router';
 import Home from '../../pages/Home';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const data = [];
 const isError = true;

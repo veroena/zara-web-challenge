@@ -1,8 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import CharacterCard from '../../components/CharacterCard';
-import * as useHandleFavoriteHook from '../../hooks/useHandleFavorite';
 import { useFavoriteStore } from '../../store';
+import * as useHandleFavoriteHook from '../../hooks/useHandleFavorite';
+import CharacterCard from '../../components/CharacterCard';
 
 const character = {
 	thumbnail: {

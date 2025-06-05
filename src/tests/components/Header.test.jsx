@@ -1,8 +1,8 @@
+import { MemoryRouter, Routes, Route } from 'react-router';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
-import Header from '../../components/Header';
-import { MemoryRouter, Routes, Route } from 'react-router';
 import { useFavoriteStore } from '../../store';
+import Header from '../../components/Header';
 
 const favoritesFilled = [{}, {}];
 

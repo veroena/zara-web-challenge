@@ -1,13 +1,13 @@
 import { useParams } from 'react-router';
-import HeartIconEmpty from '../assets/heart-icon-empty.png';
-import HeartIconFill from '../assets/heart-icon-fill.svg';
-import Header from '../components/Header';
-import ComicList from '../components/ComicList';
-import { useFavoriteStore } from '../store';
-import { useHandleFavorite } from '../hooks/useHandleFavorite';
-import { useSearchStore } from '../store';
 import { UseGetCharacterList } from '../hooks/useGetCharacterList';
 import { UseGetCharacterSearch } from '../hooks/useGetCharacterSearch';
+import { useHandleFavorite } from '../hooks/useHandleFavorite';
+import { useFavoriteStore } from '../store';
+import { useSearchStore } from '../store';
+import ComicList from '../components/ComicList';
+import Header from '../components/Header';
+import HeartIconEmpty from '../assets/heart-icon-empty.png';
+import HeartIconFill from '../assets/heart-icon-fill.svg';
 import '../styles/CharacterDetail.scss';
 
 const CharacterDetail = () => {

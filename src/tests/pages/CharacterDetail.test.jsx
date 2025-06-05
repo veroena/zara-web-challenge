@@ -1,13 +1,13 @@
+import { MemoryRouter, Routes, Route } from 'react-router';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { MemoryRouter, Routes, Route } from 'react-router';
-import CharacterDetail from '../../pages/CharacterDetail';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useFavoriteStore } from '../../store';
-import { useSearchStore } from '../../store';
 import * as useHandleFavoriteHook from '../../hooks/useHandleFavorite';
 import * as UseGetCharacterListHooks from '../../hooks/useGetCharacterList';
 import * as UseGetCharacterSearchHooks from '../../hooks/useGetCharacterSearch';
+import { useFavoriteStore } from '../../store';
+import { useSearchStore } from '../../store';
+import CharacterDetail from '../../pages/CharacterDetail';
 
 const mockData = {
 	data: {

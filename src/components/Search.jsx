@@ -1,7 +1,7 @@
-import '../styles/Search.scss';
-import { useSearchStore } from '../store';
-import { UseGetCharacterSearch } from '../hooks/useGetCharacterSearch';
 import { UseGetCharacterList } from '../hooks/useGetCharacterList';
+import { UseGetCharacterSearch } from '../hooks/useGetCharacterSearch';
+import { useSearchStore } from '../store';
+import '../styles/Search.scss';
 
 const Search = () => {
 	const { searchTerm, setSearchTerm, resetSearch } = useSearchStore();
@@ -12,7 +12,7 @@ const Search = () => {
 		searchData === undefined
 			? data?.data.results.length
 			: searchData?.data.results.length;
-	
+
 	const handleSubmit = event => {
 		event.preventDefault();
 		refetch();

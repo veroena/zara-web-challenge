@@ -1,9 +1,9 @@
-import { fireEvent, render, screen } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
-import CharacterList from '../../components/CharacterList';
 import { MemoryRouter, Routes, Route } from 'react-router';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { describe, it, expect, vi } from 'vitest';
 import * as UseGetCharacterListHooks from '../../hooks/useGetCharacterList';
+import CharacterList from '../../components/CharacterList';
 
 const mockData = {
 	data: {

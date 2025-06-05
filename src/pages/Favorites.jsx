@@ -1,7 +1,7 @@
-import CharacterCard from '../components/CharacterCard';
-import Header from '../components/Header';
 import { Link } from 'react-router';
 import { useFavoriteStore } from '../store';
+import CharacterCard from '../components/CharacterCard';
+import Header from '../components/Header';
 import '../styles/Favorites.scss';
 
 const Favorites = () => {

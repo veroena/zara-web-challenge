@@ -1,6 +1,6 @@
+import { MemoryRouter, Routes, Route } from 'react-router';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
-import { MemoryRouter, Routes, Route } from 'react-router';
 import { useFavoriteStore } from '../../store';
 import Favorites from '../../pages/Favorites';
 

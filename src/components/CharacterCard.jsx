@@ -1,7 +1,7 @@
+import { useHandleFavorite } from '../hooks/useHandleFavorite';
+import { useFavoriteStore } from '../store';
 import HeartIconEmpty from '../assets/heart-icon-empty.png';
 import HeartIconFill from '../assets/heart-icon-fill.svg';
-import { useFavoriteStore } from '../store';
-import { useHandleFavorite } from '../hooks/useHandleFavorite';
 import '../styles/CharacterCard.scss';
 
 const CharacterCard = ({ character }) => {

@@ -1,6 +1,6 @@
 import CharacterList from '../components/CharacterList';
-import Search from '../components/Search';
 import Header from '../components/Header';
+import Search from '../components/Search';
 import '../styles/Home.scss';
 
 const Home = () => {

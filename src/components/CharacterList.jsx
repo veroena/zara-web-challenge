@@ -1,8 +1,8 @@
-import CharacterCard from './CharacterCard';
 import { Link } from 'react-router';
 import { UseGetCharacterList } from '../hooks/useGetCharacterList';
 import { UseGetCharacterSearch } from '../hooks/useGetCharacterSearch';
 import { useSearchStore } from '../store';
+import CharacterCard from './CharacterCard';
 import '../styles/List.scss';
 
 const CharacterList = () => {

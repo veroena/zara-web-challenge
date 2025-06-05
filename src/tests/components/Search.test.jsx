@@ -1,10 +1,10 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import Search from '../../components/Search';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useSearchStore } from '../../store';
 import * as UseGetCharacterSearchHook from '../../hooks/useGetCharacterSearch';
 import * as UseGetCharacterListHook from '../../hooks/useGetCharacterList';
+import { useSearchStore } from '../../store';
+import Search from '../../components/Search';
 
 const queryClient = new QueryClient();
 

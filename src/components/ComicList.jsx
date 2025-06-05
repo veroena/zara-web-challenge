@@ -1,5 +1,5 @@
-import '../styles/ComicList.scss';
 import { UseGetComicList } from '../hooks/useGetComicList';
+import '../styles/ComicList.scss';
 
 const comicList = ({ characterId }) => {
 	const { data: comicData } = UseGetComicList(characterId);
