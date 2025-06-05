@@ -1,8 +1,8 @@
 import md5 from 'md5';
 
-const publicKey = 'fed39f81ba3c865cc68774567de288d7';
-const privateKey = '8c8a356ef5a584b7016ff6c3cf1f86fafce5f1aa';
-const apiBaseURL = 'https://gateway.marvel.com/v1/public';
+const publicKey = import.meta.env.VITE_PUBLIC_KEY;
+const privateKey = import.meta.env.VITE_PRIVATE_KEY;
+const apiBaseURL = import.meta.env.VITE_API_BASE_URL;
 const initialNumberOfCharacters = 50;
 
 export const useCreateURL = characterName => {
